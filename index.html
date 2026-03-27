@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Klasifikace TEV</title>
     <style>
-        /* Odstraní všechny okraje a zajistí, že stránka neplave */
         body, html { 
             margin: 0; 
             padding: 0; 
@@ -15,32 +14,38 @@
             background-color: #f0f2f5; 
         }
 
-        /* Kontejner, který drží aplikaci přes celý displej */
-        .app-wrapper {
+        .container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Tohle ořízne vše, co vyteče ven */
         }
 
-        /* Samotný iFrame s tvojí aplikací */
-        iframe { 
+        iframe {
             position: absolute;
-            top: 0;
+            /* TRIK: Posuneme iframe o 50px nahoru, aby zmizela horní lišta (pokud tam je) */
+            top: -45px; 
             left: 0;
-            width: 100%; 
-            height: 100%; 
+            width: 100%;
+            /* TRIK: Uděláme ho vyšší, aby se spodní část vytáhla nahoru */
+            height: calc(100% + 90px) !important; 
             border: none;
+        }
+
+        /* Na mobilu to necháme skoro v originálu, tam to fungovalo */
+        @media (max-width: 600px) {
+            iframe {
+                top: 0;
+                height: calc(100% + 40px) !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-wrapper">
-        <iframe src="https://script.google.com/macros/s/AKfycbxShVONLOttNXAV9Zgja2DukcdRbXxEtgaSXJ--Qu2wLvwAryRI63okW5zJQXsKzro4/exec" 
-                allow="clipboard-read; clipboard-write">
-        </iframe>
+    <div class="container">
+        <iframe src="https://script.google.com/macros/s/AKfycbxShVONLOttNXAV9Zgja2DukcdRbXxEtgaSXJ--Qu2wLvwAryRI63okW5zJQXsKzro4/exec"></iframe>
     </div>
 </body>
 </html>
