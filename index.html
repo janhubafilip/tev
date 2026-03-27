@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Klasifikace TEV</title>
     <style>
-        /* Základní nastavení, aby stránka nikam neutíkala */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
-            width: 100%; 
-            overflow: hidden; /* Důležité: skryje to, co vystrčíme ven */
-            background-color: #f0f2f5; 
-        }
+        /* Základní reset */
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #f0f2f5; font-family: sans-serif; }
 
-        /* Obal pro iframe */
-        .wrapper {
+        /* Kontejner pro Google Script iFrame */
+        .app-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -25,34 +18,43 @@
             overflow: hidden;
         }
 
+        /* Iframe: Základní nastavení pro mobil (schování lišty) */
         iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             border: none;
-            
-            /* TADY JE TA ZMĚNA: */
-            /* Uděláme iframe výrazně vyšší, než je obrazovka */
-            height: calc(100% + 150px) !important; 
-            
-            /* A posuneme ho o kousek níž, aby horní hrana seděla, 
-               ale spodní s lištou byla hluboko pod okrajem */
-            margin-bottom: -150px !important;
+            /* Na mobilu funguje tento trik skvěle */
+            height: calc(100% + 50px); 
         }
 
-        /* Mobilní optimalizace (aby tam nebylo moc prázdna pod kontaktem) */
-        @media (max-width: 600px) {
+        /* ----- OPRAVA Č. 1: DESKTOP ----- */
+        /* Na zařízeních s myší (desktop) musíme iframe prodloužit víc, 
+           protože Google lišta je tlustší a schovává kontakt. */
+        @media (hover: hover) and (pointer: fine) {
             iframe {
-                height: calc(100% + 50px) !important;
-                margin-bottom: -50px !important;
+                height: calc(100% + 80px); /* Větší přesah pro desktop */
             }
+        }
+
+        /* ----- OPRAVA Č. 2: TABLET ----- */
+        /* Pokud je obrazovka širší než mobil (např. tablet na výšku), 
+           musíme kontejneru v iFramu dovolit, aby byl širší a dlaždice nepřelézaly. */
+        @media (min-width: 480px) {
+            /* Tento styl se aplikuje na "bílý blok" uvnitř iFramu.
+               Musíme ho ale definovat TADY na GitHub Pages, ne v iFramu.
+               Použijeme trik, kdy iFramu vnutíme styl pro jeho obsah.
+               Poznámka: Toto funguje jen v sandboxu "allow-same-origin".
+               Lepší cesta je upravit .container přímo ve tvém Google Script HTML.
+            */
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <iframe src="https://script.google.com/macros/s/AKfycbwjGSZuBZ-qjeoKmpaifyqPBKxYxdmXjN6oeO63tlnjn0_lrXQ0dicby0kx75WTb2ra/exec" 
+    <div class="app-container">
+        <iframe src="https://script.google.com/macros/s/AKfycbxXYiSnIfS-uuKcVGsAvRSOrQzsdLpGreltqVhdOzCDqhPbnw84FMyMqOpckIvGmgpc/exec" 
+                title="TEV Klasifikace"
                 allow="clipboard-read; clipboard-write">
         </iframe>
     </div>
