@@ -1,22 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Klasifikace TEV</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #f0f2f5; }
-        /* Trik pro schování lišty: Uděláme iframe o 50px vyšší a posuneme ho dolů */
-        iframe { 
-            position: absolute; 
-            top: 0; left: 0; 
+        /* Odstraní všechny okraje a zajistí, že stránka neplave */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
             width: 100%; 
-            height: calc(100% + 50px); 
-            border: none; 
+            overflow: hidden; 
+            background-color: #f0f2f5; 
+        }
+
+        /* Kontejner, který drží aplikaci přes celý displej */
+        .app-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Samotný iFrame s tvojí aplikací */
+        iframe { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            border: none;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbxXYiSnIfS-uuKcVGsAvRSOrQzsdLpGreltqVhdOzCDqhPbnw84FMyMqOpckIvGmgpc/exec"></iframe>
+    <div class="app-wrapper">
+        <iframe src="https://script.google.com/macros/s/AKfycbxShVONLOttNXAV9Zgja2DukcdRbXxEtgaSXJ--Qu2wLvwAryRI63okW5zJQXsKzro4/exec" 
+                allow="clipboard-read; clipboard-write">
+        </iframe>
+    </div>
 </body>
 </html>
