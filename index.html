@@ -5,18 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Klasifikace TEV</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #f0f2f5; }
-        /* Trik pro schování lišty: Uděláme iframe o 50px vyšší a posuneme ho dolů */
-        iframe { 
-            position: absolute; 
-            top: 0; left: 0; 
+        /* Základní nastavení, aby stránka nikam neutíkala */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
             width: 100%; 
-            height: calc(100% + 80px) !important;
-            border: none; 
+            overflow: hidden; /* Důležité: skryje to, co vystrčíme ven */
+            background-color: #f0f2f5; 
+        }
+
+        /* Obal pro iframe */
+        .wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border: none;
+            
+            /* TADY JE TA ZMĚNA: */
+            /* Uděláme iframe výrazně vyšší, než je obrazovka */
+            height: calc(100% + 150px) !important; 
+            
+            /* A posuneme ho o kousek níž, aby horní hrana seděla, 
+               ale spodní s lištou byla hluboko pod okrajem */
+            margin-bottom: -150px !important;
+        }
+
+        /* Mobilní optimalizace (aby tam nebylo moc prázdna pod kontaktem) */
+        @media (max-width: 600px) {
+            iframe {
+                height: calc(100% + 50px) !important;
+                margin-bottom: -50px !important;
+            }
         }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbwjGSZuBZ-qjeoKmpaifyqPBKxYxdmXjN6oeO63tlnjn0_lrXQ0dicby0kx75WTb2ra/exec"></iframe>
+    <div class="wrapper">
+        <iframe src="https://script.google.com/macros/s/AKfycbwjGSZuBZ-qjeoKmpaifyqPBKxYxdmXjN6oeO63tlnjn0_lrXQ0dicby0kx75WTb2ra/exec" 
+                allow="clipboard-read; clipboard-write">
+        </iframe>
+    </div>
 </body>
 </html>
