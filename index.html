@@ -1,62 +1,22 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Klasifikace TEV</title>
     <style>
-        /* Základní reset */
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #f0f2f5; font-family: sans-serif; }
-
-        /* Kontejner pro Google Script iFrame */
-        .app-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        /* Iframe: Základní nastavení pro mobil (schování lišty) */
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            border: none;
-            /* Na mobilu funguje tento trik skvěle */
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #f0f2f5; }
+        /* Trik pro schování lišty: Uděláme iframe o 50px vyšší a posuneme ho dolů */
+        iframe { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; 
             height: calc(100% + 50px); 
-        }
-
-        /* ----- OPRAVA Č. 1: DESKTOP ----- */
-        /* Na zařízeních s myší (desktop) musíme iframe prodloužit víc, 
-           protože Google lišta je tlustší a schovává kontakt. */
-        @media (hover: hover) and (pointer: fine) {
-            iframe {
-                height: calc(100% + 80px); /* Větší přesah pro desktop */
-            }
-        }
-
-        /* ----- OPRAVA Č. 2: TABLET ----- */
-        /* Pokud je obrazovka širší než mobil (např. tablet na výšku), 
-           musíme kontejneru v iFramu dovolit, aby byl širší a dlaždice nepřelézaly. */
-        @media (min-width: 480px) {
-            /* Tento styl se aplikuje na "bílý blok" uvnitř iFramu.
-               Musíme ho ale definovat TADY na GitHub Pages, ne v iFramu.
-               Použijeme trik, kdy iFramu vnutíme styl pro jeho obsah.
-               Poznámka: Toto funguje jen v sandboxu "allow-same-origin".
-               Lepší cesta je upravit .container přímo ve tvém Google Script HTML.
-            */
+            border: none; 
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <iframe src="https://script.google.com/macros/s/AKfycbxXYiSnIfS-uuKcVGsAvRSOrQzsdLpGreltqVhdOzCDqhPbnw84FMyMqOpckIvGmgpc/exec" 
-                title="TEV Klasifikace"
-                allow="clipboard-read; clipboard-write">
-        </iframe>
-    </div>
+    <iframe src="https://script.google.com/macros/s/AKfycbxXYiSnIfS-uuKcVGsAvRSOrQzsdLpGreltqVhdOzCDqhPbnw84FMyMqOpckIvGmgpc/exec"></iframe>
 </body>
 </html>
